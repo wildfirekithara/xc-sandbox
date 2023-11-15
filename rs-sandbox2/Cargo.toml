@@ -1,0 +1,15 @@
+[package]
+name = "flamenova3"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+expanduser = "1.2.2"
+xc3_model = { git = "https://github.com/ScanMountGoat/xc3_lib", rev = "01c542a37853c8da312f7a7b069c1249e2277e79" }
+xc3_wgpu = { git = "https://github.com/ScanMountGoat/xc3_lib", rev = "01c542a37853c8da312f7a7b069c1249e2277e79" }
+xc3_lib = { git = "https://github.com/ScanMountGoat/xc3_lib", rev = "01c542a37853c8da312f7a7b069c1249e2277e79" }
+xc3_shader = { git = "https://github.com/ScanMountGoat/xc3_lib", rev = "01c542a37853c8da312f7a7b069c1249e2277e79" }
+xc3_write = { git = "https://github.com/ScanMountGoat/xc3_lib", rev = "01c542a37853c8da312f7a7b069c1249e2277e79" }
+recordkeeper = { git = "https://github.com/RoccoDev/recordkeeper", rev = "a8fa8bb946898a90cf0a4149ee1a07eed9008c0b" }
