@@ -7,7 +7,7 @@ It's a big mess! Don't expect anything too much of use, but I'll update this pag
 Things of note:
 
 [wwnames-aab_events.txt](./wwnames-aab_events.txt)
-- event names for hashing. intended for use with https://github.com/bnnm/wwiser
+- event names for hashing. taken from `.aab` files that are adjacent to `.mot` files. intended for use with https://github.com/bnnm/wwiser
 
 [aab_parse.rb](./rb-sandbox/aab_parse.rb)
 - dumps SND timeline from .aab files, with WWise event name and timeline position in frames (30fps)
