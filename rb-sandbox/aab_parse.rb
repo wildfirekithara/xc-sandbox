@@ -36,8 +36,6 @@ sndcount.times do |sndi|
   print "SND #{sndi} -- 0x%X -- #{sndname}" % event_hash
   i += 0x40
 
-  wwise_scan_dir File.expand_path("~/code/ntw/fcam/tools/pck"), ":#{event_hash}"
-
   f1 = bin[i, 4].unpack("f")[0]
   print " -- Time #{f1}s"
   i += 0x4
