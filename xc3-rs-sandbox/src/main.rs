@@ -58,12 +58,12 @@ struct BaseSkeleton {
     bones: Vec<BoneState>,
 }
 
-fn write_bytes_to_file(bytes: &[u8], filename: &str) {
+fn write_bytes_to_file(bytes: &[u8], filename: &str, sar_dir: &str) {
     use std::fs::File;
     use std::io::Write;
     use std::path::Path;
-    std::fs::create_dir_all(DEBUG_DIR).unwrap();
-    let path = Path::new(DEBUG_DIR).join(filename);
+    std::fs::create_dir_all(sar_dir).unwrap();
+    let path = Path::new(sar_dir).join(filename);
     let mut file = File::create(path).unwrap();
     file.write_all(bytes).unwrap();
 }
@@ -213,7 +213,7 @@ fn handle_sar(filename: &str, model: &xc3_model::ModelRoot, json_dir: &str) {
     println!("- items: {}", sar.entries.len());
     for entry in sar.entries {
         println!("  - {}", entry.name);
-        write_bytes_to_file(&entry.entry_data, &entry.name);
+        write_bytes_to_file(&entry.entry_data, &entry.name, DEBUG_DIR);
         match entry.name.split('.').last() {
             Some(ext) => match ext {
                 "anm" => handle_bc_bytes(&entry.name, &entry.entry_data, model, json_dir),
@@ -226,6 +226,18 @@ fn handle_sar(filename: &str, model: &xc3_model::ModelRoot, json_dir: &str) {
     }
 }
 
+fn dump_sar(filename: &str, sar_dir: &str) {
+    let sar = sar1::Sar1::from_file(filename).unwrap();
+    println!("- Archive file");
+    // num files
+    println!("- items: {}", sar.entries.len());
+    for entry in sar.entries {
+        println!("  - {}", entry.name);
+        write_bytes_to_file(&entry.entry_data, &entry.name, sar_dir);
+    }
+}
+
+
 fn main() {
     let shader_db_path = expanduser("~/code/ntw/fcam/data/bf2/xc2.json")
         .unwrap()
@@ -233,6 +245,13 @@ fn main() {
         .to_string();
 
     let args: Vec<_> = env::args().collect();
+
+    if args.len() == 3 {
+        dump_sar(&args[1], &args[2]);
+        return;
+    }
+
+
     if args.len() < 3 {
         println!("Usage: {} <INPUT_MODEL> <INPUT_ANIM> <JSON_OUT_DIR>", args[0]);
         return;
