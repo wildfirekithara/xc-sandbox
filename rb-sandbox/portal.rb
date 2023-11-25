@@ -1,3 +1,5 @@
+# modify portals
+
 require "./scripts/bf3.rb"
 
 FTP_HOST = "192.168.0.171"

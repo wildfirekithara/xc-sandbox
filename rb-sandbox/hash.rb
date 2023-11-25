@@ -1,3 +1,5 @@
+# assorted helpers for hashing, bdat hexdigest string format
+
 require 'murmurhash3'
 
 def mhash str
@@ -9,4 +11,8 @@ end
 
 def fmt_mhash str
   "<#{mhash(str)}>"
+end
+
+if __FILE__ == $0
+  puts fmt_mhash ARGV[0]
 end

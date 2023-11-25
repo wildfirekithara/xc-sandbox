@@ -1,13 +1,15 @@
+# assorted bf3 data
+
 require 'json'
 require 'colorize'
 require 'fileutils'
 require 'net/ftp'
 
 module BF3
-  BDAT_BASE = "./data/bf3/bdatjs"
+  BDAT_BASE = File.expand_path "~/code/ntw/fcam/data/bf3/bdatjs"
   EVENT_MESSAGES = {}
-  OUTPUT_BDAT_JS_DIR = "../output/bdatjs"
-  OUTPUT_BDAT_DIR = "../output/bdat"
+  OUTPUT_BDAT_JS_DIR = File.expand_path "~/code/ntw/output/bdatjs"
+  OUTPUT_BDAT_DIR = File.expand_path "~/code/ntw/output/bdat"
   EMULATOR_SD_PATH = File.expand_path "~/Library/Application Support/Ryujinx/sdcard"
   FTP_SD_PATH = "/" 
   ATMOSPHERE_BDAT_PATH = "atmosphere/contents/010074F013262000/romfs/bdat"
@@ -278,7 +280,7 @@ module BF3
 
   GIMMICK_TYPES_INV = GIMMICK_TYPES.invert
 
-  Dir["./data/bf3/bdatjs/gb/evt/**/msg_*/*.json"].each do |path|
+  Dir[File.expand_path "~/code/ntw/fcam/data/bf3/bdatjs/gb/evt/**/msg_*/*.json"].each do |path|
     msg_evid = path.split("/")[-2]
     evid = msg_evid[4..-1]  
     # next unless evid.start_with?("ev")

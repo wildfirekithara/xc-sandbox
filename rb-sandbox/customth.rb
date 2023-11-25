@@ -1,3 +1,5 @@
+# custom theatre events
+
 require "./scripts/bf3.rb"
 require "./scripts/hash.rb"
 

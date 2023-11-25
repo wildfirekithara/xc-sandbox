@@ -1,3 +1,5 @@
+# old map stuff
+
 require 'json'
 
 MAPS = File.open('data/bf3/bdatjs/sys/SYS_MapList.json') { |f| JSON.parse(f.read) }.then { |res| [res["schema"], res["rows"]] }

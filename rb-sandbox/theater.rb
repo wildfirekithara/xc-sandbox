@@ -1,10 +1,10 @@
-require "./scripts/bf3.rb"
+# search in event messages
+# give event theater context and location if available
+
+require "./bf3.rb"
 require 'colorize'
 
-
-range = 4
-
-puts
+range = ARGV[1] ? ARGV[1].to_i : 5
 
 search_query = ARGV[0]
 results = []
@@ -42,6 +42,8 @@ results_by_evid.each do |evid, results|
       BF3::print_scene_event_theater_header ev
       puts
       
+      # attempt to find the location of the event
+
       evmap = ev["playMap"].split("_").last.downcase unless ev["playMap"].empty?
       evloc = ev.then { |ev| { "X" => ev["playMapX"], "Y" => ev["playMapY"], "Z" => ev["playMapZ"] } }
 

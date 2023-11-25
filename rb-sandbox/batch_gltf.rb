@@ -1,3 +1,4 @@
+# batch convert wimdo to gltf
 require 'fileutils'
 
 model_dir = File.expand_path("~/code/ntw/fcam/data/bf3/aoc4/chr/oj")
