@@ -7,11 +7,17 @@ require "./wwise-search.rb"
 
 #fn = File.expand_path("~/code/ntw/fcam/data/bf3/aoc4/chr/ch/ch41141000_wp44_talent00.aab")
 
-dir = ARGV[0]
+input = ARGV[0]
 should_scan = ARGV[1] == "--scan"
 names = []
 
-Dir["#{dir}/**/*.aab"].each do |fn|
+if input.end_with?(".aab")
+  files = [input]
+else
+  files = Dir["#{input}/**/*.aab"]
+end
+
+files.each do |fn|
   bin = File.read(fn).force_encoding("ASCII-8BIT")
 
   i = 4
@@ -56,7 +62,7 @@ Dir["#{dir}/**/*.aab"].each do |fn|
       i += 0x40
 
       f1 = bin[i, 4].unpack("f")[0]
-      print " -- Time #{f1}s"
+      print " -- Time #{f1}"
       i += 0x4
       u32 = bin[i, 4].unpack("V")[0]
       # if u32 != 0x20
